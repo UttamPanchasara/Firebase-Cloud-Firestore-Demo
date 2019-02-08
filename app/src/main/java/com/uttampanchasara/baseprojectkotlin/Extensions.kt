@@ -1,9 +1,11 @@
 package com.uttampanchasara.baseprojectkotlin
 
+import android.content.Context
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.view.View
+import android.widget.Toast
 import com.uttampanchasara.baseprojectkotlin.ui.base.BaseActivity
 import java.text.SimpleDateFormat
 
@@ -51,4 +53,8 @@ fun getDateWithTFormat(date: String): String {
     spf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
 
     return spf.format(newDate)
+}
+
+fun Context.toast(message: String, isLong: Boolean = false) {
+    Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_LONG).show()
 }

@@ -1,10 +1,10 @@
 package com.uttampanchasara.baseprojectkotlin
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import com.uttampanchasara.baseprojectkotlin.data.DataManager
 import com.uttampanchasara.baseprojectkotlin.di.component.DaggerAppComponent
 import com.uttampanchasara.baseprojectkotlin.di.module.AppModule
-import com.uttampanchasara.baseprojectkotlin.utils.PrefUtils
 import javax.inject.Inject
 
 class AppController : Application() {
@@ -20,7 +20,7 @@ class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PrefUtils.init(this)
+        //PrefUtils.init(this)
         mAppController = this
 
         mAppComponent = DaggerAppComponent.builder()
@@ -28,6 +28,11 @@ class AppController : Application() {
                 .build() as DaggerAppComponent
 
         mAppComponent.inject(this)
+
+        FirebaseApp.initializeApp(this)
+
+        // add api key to preference
+        mDataManager?.webAPIKey = getString(R.string.web_api_key)
     }
 
     /*override fun attachBaseContext(context: Context) {

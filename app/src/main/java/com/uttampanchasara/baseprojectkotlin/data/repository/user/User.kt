@@ -7,4 +7,5 @@ import android.arch.persistence.room.PrimaryKey
 data class User(
         @PrimaryKey
         val email: String,
-        val name: Boolean)
+        val name: String,
+        val password: String)

@@ -9,4 +9,5 @@ import com.uttampanchasara.baseprojectkotlin.ui.base.BaseView
  */
 interface SplashView : BaseView {
     fun navigateToSignIn()
+    fun navigateToDashboard()
 }

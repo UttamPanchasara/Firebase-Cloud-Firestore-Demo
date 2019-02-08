@@ -5,10 +5,12 @@ import com.uttampanchasara.baseprojectkotlin.R
 import com.uttampanchasara.baseprojectkotlin.data.DataManager
 import com.uttampanchasara.baseprojectkotlin.di.component.ActivityComponent
 import com.uttampanchasara.baseprojectkotlin.ui.base.BaseActivity
+import com.uttampanchasara.baseprojectkotlin.ui.dashboard.DashboardActivity
 import com.uttampanchasara.baseprojectkotlin.ui.signin.SignInActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
+
     override fun getLayout(): Int {
         return R.layout.activity_splash
     }
@@ -25,11 +27,16 @@ class SplashActivity : BaseActivity(), SplashView {
 
     override fun setUp() {
         mViewModel.onAttachView(this)
-        mViewModel.navigateToSignIn()
+        mViewModel.navigateToNext()
     }
 
     override fun navigateToSignIn() {
         startActivity(Intent(this, SignInActivity::class.java))
+        finish()
+    }
+
+    override fun navigateToDashboard() {
+        startActivity(Intent(this, DashboardActivity::class.java))
         finish()
     }
 }

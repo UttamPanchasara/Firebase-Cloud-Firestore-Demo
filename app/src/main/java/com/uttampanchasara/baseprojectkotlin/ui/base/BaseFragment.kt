@@ -9,12 +9,14 @@ import android.support.annotation.StringRes
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.toast
 import com.uttampanchasara.baseprojectkotlin.di.component.ActivityComponent
-import com.uttampanchasara.baseprojectkotlin.utils.PrefUtils
+import com.uttampanchasara.baseprojectkotlin.utils.ProgressBarDialog
 import java.util.*
 
 /**
@@ -32,6 +34,14 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     override fun onUnAuthorizedAccess() {
+    }
+
+    override fun onError(errorMsg: String) {
+        mActivity!!.toast(errorMsg)
+    }
+
+    override fun onError(errorCode: Int) {
+        mActivity!!.toast(getString(errorCode))
     }
 
     abstract fun getLayoutId(): Int
@@ -66,9 +76,11 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     override fun showLoading() {
+        mActivity!!.showLoading()
     }
 
     override fun hideLoading() {
+        mActivity!!.hideLoading()
     }
 
     /**
@@ -88,19 +100,28 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        val locale = PrefUtils.getString(PrefUtils.PREF_LANG_LOCALE)
-        setLocale(context!!, locale)
 
         if (context is BaseActivity) {
-            val activity = context as BaseActivity
-            this.mActivity = activity
-            activity.onFragmentAttached()
+            this.mActivity = context
+            context.onFragmentAttached()
         }
     }
 
     override fun onDetach() {
         mActivity = null
         super.onDetach()
+    }
+
+    fun loadFragment(isAddToBackStack: Boolean = false, transaction: FragmentTransaction.() -> Unit) {
+        val beginTransaction = childFragmentManager.beginTransaction()
+        beginTransaction.transaction()
+        /*for ((name, view) in transitionPairs) {
+            ViewCompat.setTransitionName(view, name)
+            beginTransaction.addSharedElement(view, name)
+        }*/
+
+        if (isAddToBackStack) beginTransaction.addToBackStack(null)
+        beginTransaction.commit()
     }
 
     fun getActivityComponent(): ActivityComponent? {

@@ -7,6 +7,7 @@ import com.uttampanchasara.baseprojectkotlin.di.ActivityContext
 import com.uttampanchasara.baseprojectkotlin.di.PerActivity
 import com.uttampanchasara.baseprojectkotlin.ui.dashboard.DashboardViewModel
 import com.uttampanchasara.baseprojectkotlin.ui.signin.SignInViewModel
+import com.uttampanchasara.baseprojectkotlin.ui.signin.SignUpViewModel
 import com.uttampanchasara.baseprojectkotlin.ui.splash.SplashViewModel
 import com.uttampanchasara.baseprojectkotlin.utils.rx.AppSchedulerProvider
 import com.uttampanchasara.baseprojectkotlin.utils.rx.SchedulerProvider
@@ -52,5 +53,10 @@ class ActivityModule constructor(val mActivity: AppCompatActivity) {
     @PerActivity
     internal fun provideSplashViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable):
             SplashViewModel = SplashViewModel(dataManager, schedulerProvider, compositeDisposable)
+
+    @Provides
+    @PerActivity
+    internal fun provideSignUpViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable):
+            SignUpViewModel = SignUpViewModel(dataManager, schedulerProvider, compositeDisposable)
 
 }

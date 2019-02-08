@@ -6,6 +6,8 @@ package com.uttampanchasara.baseprojectkotlin
  * @since 11/15/2018
  */
 object AppConstants {
-    internal val APP_DB_NAME = "base_project.db"
-    internal val PREF_NAME = "pref_app"
+    internal const val API_STATUS_CODE_LOCAL_ERROR = 0
+
+    internal const val APP_DB_NAME = "base_project.db"
+    internal const val PREF_NAME = "pref_app"
 }

@@ -13,11 +13,12 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.toast
 import com.uttampanchasara.baseprojectkotlin.AppController
 import com.uttampanchasara.baseprojectkotlin.di.component.ActivityComponent
 import com.uttampanchasara.baseprojectkotlin.di.component.DaggerActivityComponent
 import com.uttampanchasara.baseprojectkotlin.di.module.ActivityModule
-import com.uttampanchasara.baseprojectkotlin.utils.PrefUtils
+import com.uttampanchasara.baseprojectkotlin.utils.ProgressBarDialog
 import java.io.IOException
 
 /**
@@ -38,6 +39,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     override fun onUnAuthorizedAccess() {
+    }
+
+    override fun onError(errorMsg: String) {
+        toast(errorMsg)
+    }
+
+    override fun onError(errorCode: Int) {
+        toast(getString(errorCode))
     }
 
     lateinit var mActivityComponent: ActivityComponent
@@ -132,11 +141,21 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
     }
 
+    private var progressBarDialog: ProgressBarDialog? = null
+
     override fun showLoading() {
+        if (progressBarDialog == null) {
+            progressBarDialog = ProgressBarDialog.show(this, false)
+        } else {
+            progressBarDialog?.dismiss()
+            progressBarDialog?.show(supportFragmentManager, ProgressBarDialog.TAG)
+        }
     }
 
     override fun hideLoading() {
-
+        if (progressBarDialog != null) {
+            progressBarDialog?.dismiss()
+        }
     }
 
     /**
@@ -202,7 +221,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     fun signOutUnAuthorized(intent: Intent) {
-        PrefUtils.clear()
         startActivity(intent)
     }
 

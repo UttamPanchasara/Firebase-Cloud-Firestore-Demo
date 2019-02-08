@@ -4,6 +4,8 @@ import com.uttampanchasara.baseprojectkotlin.di.PerActivity
 import com.uttampanchasara.baseprojectkotlin.di.module.ActivityModule
 import com.uttampanchasara.baseprojectkotlin.ui.dashboard.DashboardActivity
 import com.uttampanchasara.baseprojectkotlin.ui.signin.SignInActivity
+import com.uttampanchasara.baseprojectkotlin.ui.signin.SignInFragment
+import com.uttampanchasara.baseprojectkotlin.ui.signin.SignUpFragment
 import com.uttampanchasara.baseprojectkotlin.ui.splash.SplashActivity
 import dagger.Component
 
@@ -21,4 +23,7 @@ interface ActivityComponent {
     fun inject(activity: SplashActivity)
 
     fun inject(activity: DashboardActivity)
+
+    fun inject(signUpFragment: SignUpFragment)
+    fun inject(signInFragment: SignInFragment)
 }

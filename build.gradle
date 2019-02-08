@@ -10,6 +10,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.2.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -39,56 +40,30 @@ subprojects {
                 buildToolsVersion versions.buildTools
 
                 //signingConfigs signingConfig
-
-                if (project.pluginManager.hasPlugin("com.android.application")) {
-
-                    buildTypes {
-                        debug {
-                            versionNameSuffix ".debug"
-                            crunchPngs false
-                            testCoverageEnabled true
-                            debuggable true
-                            jniDebuggable true
-                            renderscriptDebuggable false
-                            minifyEnabled false
-                            zipAlignEnabled true
-                            //signingConfig signingConfigs.debug
-                        }
-                        release {
-                            minifyEnabled true
-                            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), './proguard-rules.pro'
-                            debuggable false
-                            jniDebuggable false
-                            renderscriptDebuggable false
-                            //signingConfig signingConfigs.debug
-                            shrinkResources true
-                            pseudoLocalesEnabled false
-                            zipAlignEnabled true
-                        }
+                buildTypes {
+                    debug {
+                        versionNameSuffix ".debug"
+                        crunchPngs false
+                        testCoverageEnabled true
+                        debuggable true
+                        jniDebuggable true
+                        renderscriptDebuggable false
+                        minifyEnabled false
+                        zipAlignEnabled true
+                        multiDexEnabled true
+                        //signingConfig signingConfigs.debug
                     }
-                } else if (project.pluginManager.hasPlugin("com.android.library")) {
-                    //This is the library module
-                    defaultConfig libDefaultConfig
-
-                    buildTypes {
-                        debug {
-                            crunchPngs false
-                            testCoverageEnabled true
-                            debuggable true
-                            jniDebuggable true
-                            renderscriptDebuggable false
-                            minifyEnabled false
-                            zipAlignEnabled true
-                            //signingConfig signingConfigs.debug
-                        }
-                        release {
-                            debuggable false
-                            jniDebuggable false
-                            renderscriptDebuggable false
-                            pseudoLocalesEnabled false
-                            zipAlignEnabled true
-                            //signingConfig signingConfigs.debug
-                        }
+                    release {
+                        minifyEnabled true
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), './proguard-rules.pro'
+                        debuggable false
+                        jniDebuggable false
+                        renderscriptDebuggable false
+                        shrinkResources true
+                        pseudoLocalesEnabled false
+                        zipAlignEnabled true
+                        multiDexEnabled true
+                        //signingConfig signingConfigs.debug
                     }
                 }
 
@@ -110,11 +85,15 @@ subprojects {
         }
 
         dependencies {
-            implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
-            implementation "io.reactivex.rxjava2:rxjava:2.2.4"
             //Android libs
             if (project.hasProperty("android")) {
+                implementation 'com.android.support:multidex:1.0.3'
+
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+                implementation "io.reactivex.rxjava2:rxjava:2.2.4"
                 implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
                 //Support libs
                 implementation "com.android.support:support-annotations:${versions.supportLibrary}"
                 implementation "com.android.support:support-v4:${versions.supportLibrary}"

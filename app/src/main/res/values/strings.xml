@@ -2,4 +2,20 @@
     <string name="app_name">Base Project</string>
     <string name="hint_email">Email</string>
     <string name="text_login">Login</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_re_password">Re-Type Password</string>
+    <string name="text_sign_up">Sign Up</string>
+
+    <!-- Firebase api key-->
+    <string name="web_api_key">AIzaSyBXYnWzVCTtUpZ8RrEfB6M-GP8KO51Zork</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="connection_error">Internet connection lost!</string>
+    <string name="emailpassword_status_fmt">Email password format</string>
+    <string name="firebase_status_fmt">Firebase Format</string>
+    <string name="no_users">No Users</string>
 </resources>

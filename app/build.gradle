@@ -18,4 +18,9 @@ android {
 dependencies {
     // network
     implementation "com.amitshekhar.android:rx2-android-networking:1.0.2"
+
+    implementation 'com.google.firebase:firebase-firestore:18.0.0'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
