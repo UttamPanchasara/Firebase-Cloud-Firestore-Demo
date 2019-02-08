@@ -38,11 +38,9 @@ class DashboardActivity : BaseActivity(), DashboardView {
             viewFlipper.displayedChild = 0
         }
 
-        mAdapter?.let {
-            mAdapter = UsersListAdapter(this)
-            rvUsers.adapter = mAdapter
-            rvUsers.layoutManager = LinearLayoutManager(this)
-        }
+        mAdapter = UsersListAdapter(this)
+        rvUsers.adapter = mAdapter
+        rvUsers.layoutManager = LinearLayoutManager(this)
 
         getUsers()
     }

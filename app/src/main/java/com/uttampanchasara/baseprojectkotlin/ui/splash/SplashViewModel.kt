@@ -26,9 +26,9 @@ class SplashViewModel
 
     fun navigateToNext() {
         if (mDataManager.isSignedIn) {
-            mView?.navigateToSignIn()
-        } else {
             mView?.navigateToDashboard()
+        } else {
+            mView?.navigateToSignIn()
         }
     }
 }
