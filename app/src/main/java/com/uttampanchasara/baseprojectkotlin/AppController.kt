@@ -32,7 +32,7 @@ class AppController : Application() {
         FirebaseApp.initializeApp(this)
 
         // add api key to preference
-        mDataManager?.webAPIKey = getString(R.string.web_api_key)
+        mDataManager?.webAPIKey = "" /*getString(R.string.web_api_key)*/
     }
 
     /*override fun attachBaseContext(context: Context) {

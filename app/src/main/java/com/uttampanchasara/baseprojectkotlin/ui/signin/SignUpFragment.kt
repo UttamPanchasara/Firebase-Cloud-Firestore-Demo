@@ -49,6 +49,7 @@ class SignUpFragment : BaseFragment(), View.OnClickListener, SignUpView {
         mFirebaseInstant = FirebaseFirestore.getInstance()
 
         btnSignUp.setOnClickListener(this)
+        btnCancel.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -60,6 +61,9 @@ class SignUpFragment : BaseFragment(), View.OnClickListener, SignUpView {
                 val rePassword = edtRePassword.text.toString()
 
                 mViewModel.validateForm(mName, mEmail, mPassword, rePassword)
+            }
+            R.id.btnCancel -> {
+                openSignInFragment()
             }
         }
     }

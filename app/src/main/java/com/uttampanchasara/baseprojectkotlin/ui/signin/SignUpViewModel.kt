@@ -1,15 +1,10 @@
 package com.uttampanchasara.baseprojectkotlin.ui.signin
 
-import android.util.Log
-import com.androidnetworking.error.ANError
 import com.uttampanchasara.baseprojectkotlin.BaseViewModel
-import com.uttampanchasara.baseprojectkotlin.R
 import com.uttampanchasara.baseprojectkotlin.data.DataManager
-import com.uttampanchasara.baseprojectkotlin.data.network.model.SignUpResponse
 import com.uttampanchasara.baseprojectkotlin.ui.base.BaseView
 import com.uttampanchasara.baseprojectkotlin.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 class SignUpViewModel
